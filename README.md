@@ -66,7 +66,7 @@ On the function `toBinary()` I used a combination of color and gradient threshol
 
 ### 4 - Apply a perspective transform to rectify binary image ("birds-eye view")
 
-The code for my perspective transform includes a function called `warper()`, which appears in lines 1 through 8 in the file `example.py` (output_images/examples/example.py) (or, for example, in the 3rd code cell of the IPython notebook).  The `warper()` function takes as inputs an image (`img`), as well as source (`src`) and destination (`dst`) points.  I chose the hardcode the source and destination points in the following manner:
+The code for my perspective transform includes a function called `warper()` which takes as inputs an image (`img`), as well as source (`src`) and destination (`dst`) points.  I chose the hardcode the source and destination points in the following manner:
 
 ```python
 
@@ -95,6 +95,7 @@ This resulted in the following source and destination points:
 | 250, 660      | 100, 720      |
 
 I verified that my perspective transform was working as expected by drawing the `src` and `dst` points onto a test image and its warped counterpart to verify that the lines appear parallel in the warped image.
+
 In the example bellow I applied perspective transform to the binary image from step 3.
 
 ![alt text][image4]
@@ -128,7 +129,7 @@ Once I had a good measurement of the line positions in warped space, it was time
 
 ### 8 - Output visual display of the lane boundaries and numerical estimation of lane curvature and vehicle position
 
-For this I used text(), from the matplotlib librery, to write the lane boundaries and numerical estimation of lane curvature and vehicle position on top of the image.
+For this I used text(), from the matplotlib librery, to write the numerical estimation of lane curvature and vehicle position on top of the image.
 
 ![alt text][image8]
 
@@ -150,4 +151,4 @@ Ideas to improve this project:
 * 1 - Average the lines to reduce sudden changes.
 * 2 - Add birds-eye perspective to the final video.
 * 3 - Test with more videos and images to find corner cases and improve the pipeline.
-* 4 - Increase the offset of the destination points on the perspective transform function.
+* 4 - Increase the "offset" of the destination points on the perspective transform function.

@@ -31,13 +31,19 @@ The goals / steps of this project are the following:
 
 ### Camera Calibration
 
-#### 1. Briefly state how you computed the camera matrix and distortion coefficients. Provide an example of a distortion corrected calibration image.
+The code for this step is contained in the first code cell of the IPython notebook located in "./Undistor Images.ipynb" and also as part of the main IPython notebook located in "./Advanced Lane Finding Project.ipynb".  
 
-The code for this step is contained in the first code cell of the IPython notebook located in "./examples/example.ipynb" (or in lines # through # of the file called `some_file.py`).  
+I start by preparing "object points", which will be the (x, y, z) coordinates of the chessboard corners in the world. Here I am assuming the chessboard is fixed on the (x, y) plane at z=0, such that the object points are the same for each calibration image.
 
-I start by preparing "object points", which will be the (x, y, z) coordinates of the chessboard corners in the world. Here I am assuming the chessboard is fixed on the (x, y) plane at z=0, such that the object points are the same for each calibration image.  Thus, `objp` is just a replicated array of coordinates, and `objpoints` will be appended with a copy of it every time I successfully detect all chessboard corners in a test image.  `imgpoints` will be appended with the (x, y) pixel position of each of the corners in the image plane with each successful chessboard detection.  
+It is important to properly set the numbers of corners for `objp`. In this case the printed chessboard has 6*9 corners.
 
-I then used the output `objpoints` and `imgpoints` to compute the camera calibration and distortion coefficients using the `cv2.calibrateCamera()` function.  I applied this distortion correction to the test image using the `cv2.undistort()` function and obtained this result:
+`objp` is just a replicated array of coordinates, and `objpoints` will be appended with a copy of it every time I successfully detect all chessboard corners in a test image using the function cv2.findChessboardCorners() on all the images also specifying the number of corners. `imgpoints` will be appended with the (x, y) pixel position of each of the corners in the image plane with each successful chessboard detection.  
+
+I then used the output `objpoints` and `imgpoints` to compute the camera calibration and distortion coefficients using the `cv2.calibrateCamera()` function.  
+
+Finally, I applied this distortion correction to the test image using the `cv2.undistort()` function.
+
+On the "Undistor Images" notebook I applied the camera calibration and undistort pipeline to my own images captured with GoPro Hero 4 and obtained this result:
 
 ![alt text][image1]
 
@@ -104,14 +110,15 @@ I implemented this step in lines # through # in my code in `yet_another_file.py`
 
 ### Pipeline (video)
 
-#### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (wobbly lines are ok but no catastrophic failures that would cause the car to drive off the road!).
-
-Here's a [link to my video result](./project_video_result.mp4)
+Here's a [link to my video result](./project_video_result.mp4) to the final video output.
 
 ---
 
 ### Discussion
 
-#### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
+For this project, I used a step by step approach which helped me understand each part of the pipeline. This was very helpful when things didn't go exactly as expected. Debugging was a lot easier and concepts became clearer. At the end I put together a pipeline by simply calling the functions I implemented along the way.
 
-Here I'll talk about the approach I took, what techniques I used, what worked and why, where the pipeline might fail and how I might improve it if I were going to pursue this project further.  
+Ideas to improve this project:
+*1 - Average the lines to reduce sudden changes.
+*2 - Add birds-eye perspective to the final video.
+*3 - Test with more videos and images to find corner cases and improve the pipeline.

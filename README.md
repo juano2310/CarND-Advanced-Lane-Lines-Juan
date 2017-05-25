@@ -31,7 +31,7 @@ The goals / steps of this project are the following:
 
 ### Camera Calibration
 
-The code for this step is contained in the first code cell of the IPython notebook located in ["./Undistor Images.ipynb"](./Undistor Images.ipynb) and also as part of the main IPython notebook located in ["./Advanced Lane Finding Project.ipynb"](./Advanced Lane Finding Project.ipynb).  
+The code for this step is contained in the first code cell of the IPython notebook located in [./Undistor Images.ipynb](./Undistor Images.ipynb) and also as part of the main IPython notebook located in [./Advanced Lane Finding Project.ipynb](./Advanced Lane Finding Project.ipynb).  
 
 I start by preparing "object points", which will be the (x, y, z) coordinates of the chessboard corners in the world. Here I am assuming the chessboard is fixed on the (x, y) plane at z=0, such that the object points are the same for each calibration image.
 

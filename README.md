@@ -27,6 +27,7 @@ The goals / steps of this project are the following:
 [image6]: ./examples/curvature.png "Curvature"
 [image7]: ./examples/warp_back.png "Warp the detected lane boundaries back"
 [image8]: ./examples/output_curvature.png "Output curvature"
+[image9]: ./examples/formula.png "Equation"
 [video1]: ./project_video_result.mp4 "Video"
 
 ## Implementation
@@ -59,7 +60,7 @@ Using the the values obtained by camera calibration function defined in the prev
 
 ### 3 - Use color transforms, gradients, etc., to create a thresholded binary image
 
-I used a combination of color and gradient thresholds to generate a binary image (thresholding steps at lines # through # in `another_file.py`).  Here's an example of my output for this step.
+On the function `toBinary()` I used a combination of color and gradient thresholds to generate a binary image. The output is shown below. The final image is a combination of binary thresholding the S channel (HLS) and binary thresholding the result of applying the Sobel operator in the x direction on the undistorted image.
 
 ![alt text][image3]
 
@@ -68,46 +69,59 @@ I used a combination of color and gradient thresholds to generate a binary image
 The code for my perspective transform includes a function called `warper()`, which appears in lines 1 through 8 in the file `example.py` (output_images/examples/example.py) (or, for example, in the 3rd code cell of the IPython notebook).  The `warper()` function takes as inputs an image (`img`), as well as source (`src`) and destination (`dst`) points.  I chose the hardcode the source and destination points in the following manner:
 
 ```python
-src = np.float32(
-    [[(img_size[0] / 2) - 55, img_size[1] / 2 + 100],
-    [((img_size[0] / 6) - 10), img_size[1]],
-    [(img_size[0] * 5 / 6) + 60, img_size[1]],
-    [(img_size[0] / 2 + 55), img_size[1] / 2 + 100]])
-dst = np.float32(
-    [[(img_size[0] / 4), 0],
-    [(img_size[0] / 4), img_size[1]],
-    [(img_size[0] * 3 / 4), img_size[1]],
-    [(img_size[0] * 3 / 4), 0]])
+
+offset = 100 # offset for dst points
+
+# Source points
+src = np.float32([[[ 590,  450]],
+				  [[ 710,  450]],
+				  [[ img_size[0]-140,  660]],
+				  [[ 250,  660]]])
+
+# Result points        
+dst = np.float32([[offset, 0],
+				  [img_size[0]-offset, 0],
+				  [img_size[0]-offset, img_size[1]],
+				  [offset, img_size[1]]])
 ```
 
 This resulted in the following source and destination points:
 
 | Source        | Destination   |
 |:-------------:|:-------------:|
-| 585, 460      | 320, 0        |
-| 203, 720      | 320, 720      |
-| 1127, 720     | 960, 720      |
-| 695, 460      | 960, 0        |
+| 590, 450      | 100, 0        |
+| 710, 450      | 1180, 0       |
+| 1140, 660     | 1180, 720     |
+| 250, 660      | 100, 720      |
 
 I verified that my perspective transform was working as expected by drawing the `src` and `dst` points onto a test image and its warped counterpart to verify that the lines appear parallel in the warped image.
+In the example bellow I applied perspective transform to the binary image from step 3.
 
 ![alt text][image4]
 
 ### 5 - Detect lane pixels and fit to find the lane boundary
 
-Then I did some other stuff and fit my lane lines with a 2nd order polynomial and it looks like this:
+For this task I applied a convolution `find_window_centroids()`, which maximized the number of "hot" pixels in each window.
+
+A convolution is the summation of the product of two separate signals, in our case the window template and the vertical slice of the pixel image.
+
+You slide your window template across the image from left to right and any overlapping values are summed together, creating the convolved signal. The peak of the convolved signal is where there was the highest overlap of pixels and the most likely position for the lane marker.
+
+Finally I combined the left and right points over the previous image.
 
 ![alt text][image5]
 
 ### 6 - Determine the curvature of the lane and vehicle position with respect to center
 
-I did this in lines # through # in my code in `my_other_file.py`
+Using the left and right points found with the `find_window_centroids()` function I was able to define `curvature()` which returned the center of the image as well as the left and right Radius of curvature using the following equation:
+![alt text][image9]
 
+Here are the results plotted to an image:
 ![alt text][image6]
 
 ### 7 - Warp the detected lane boundaries back onto the original image
 
-I implemented this step in lines # through # in my code in `yet_another_file.py` in the function `map_lane()`.  Here is an example of my result on a test image:
+Once I had a good measurement of the line positions in warped space, it was time to project the measurement back down onto the road. Using the arrays called ploty, left_fitx and right_fitx obtained after fitting the lines with a polynomial of the binary image, I projected those lines onto the undistorted image:
 
 ![alt text][image7]
 
@@ -135,3 +149,4 @@ Ideas to improve this project:
 * 1 - Average the lines to reduce sudden changes.
 * 2 - Add birds-eye perspective to the final video.
 * 3 - Test with more videos and images to find corner cases and improve the pipeline.
+* 4 - Increase the offset of the destination points on the perspective transform function.

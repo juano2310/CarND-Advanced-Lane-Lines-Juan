@@ -20,7 +20,7 @@ The goals / steps of this project are the following:
 [//]: # (Image References)
 
 [image1]: ./examples/gopro.png "Undistorted"
-[image2]: ./test_images/test1.jpg "Road Transformed"
+[image2]: ./examples/undistorted.png "Example image undistorted"
 [image3]: ./examples/binary_combo_example.jpg "Binary Example"
 [image4]: ./examples/warped_straight_lines.jpg "Warp Example"
 [image5]: ./examples/color_fit_lines.jpg "Fit Visual"
@@ -29,7 +29,9 @@ The goals / steps of this project are the following:
 
 ## Implementation
 
-### Camera Calibration
+On this writeup I will describe step by step all the pipeline used on the main IPython notebook located in `./Advanced Lane Finding Project.ipynb`.
+
+### 1- Camera Calibration
 
 The code for this step is contained in the first code cell of the IPython notebook located in `./Undistor Images.ipynb` and also as part of the main IPython notebook located in `./Advanced Lane Finding Project.ipynb`.  
 
@@ -47,12 +49,13 @@ On the "Undistor Images" notebook I applied the camera calibration and undistort
 
 ![alt text][image1]
 
-### Pipeline (single images)
+### 2 - Apply a distortion correction to raw images
 
-#### 1. Provide an example of a distortion-corrected image.
+Using the the values obtained by camera calibration function defined in the previous step I applied `cv2.undistort()` to an example image and this is the result:
 
-To demonstrate this step, I will describe how I apply the distortion correction to one of the test images like this one:
 ![alt text][image2]
+
+### 3 - Use color transforms, gradients, etc., to create a thresholded binary image
 
 #### 2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.
 

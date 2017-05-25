@@ -74,15 +74,15 @@ offset = 100 # offset for dst points
 
 # Source points
 src = np.float32([[[ 590,  450]],
-				  [[ 710,  450]],
-				  [[ img_size[0]-140,  660]],
-				  [[ 250,  660]]])
+		[[ 710,  450]],
+		[[ img_size[0]-140,  660]],
+		[[ 250,  660]]])
 
 # Result points        
 dst = np.float32([[offset, 0],
-				  [img_size[0]-offset, 0],
-				  [img_size[0]-offset, img_size[1]],
-				  [offset, img_size[1]]])
+		[img_size[0]-offset, 0],
+		[img_size[0]-offset, img_size[1]],
+		[offset, img_size[1]]])
 ```
 
 This resulted in the following source and destination points:
@@ -117,6 +117,7 @@ Using the left and right points found with the `find_window_centroids()` functio
 ![alt text][image9]
 
 Here are the results plotted to an image:
+
 ![alt text][image6]
 
 ### 7 - Warp the detected lane boundaries back onto the original image

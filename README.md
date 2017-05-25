@@ -26,6 +26,8 @@ The goals / steps of this project are the following:
 [image5]: ./examples/color_fit_lines.jpg "Fit Visual"
 [image6]: ./examples/example_output.jpg "Output"
 [video1]: ./project_video_result.mp4 "Video"
+[notebook1]: ./Undistor Images.ipynb "Undistor Images"
+[notebook2]: ./Advanced Lane Finding Project.ipynb "Advanced Lane Finding Project"
 
 ## Implementation
 

@@ -123,7 +123,7 @@ Here are the results plotted to an image:
 
 ### 7 - Warp the detected lane boundaries back onto the original image
 
-Once I had a good measurement of the line positions in warped space, it was time to project the measurement back down onto the road. Using the arrays called ploty, left_fitx and right_fitx obtained after fitting the lines with a polynomial of the binary image, I projected those lines onto the undistorted image:
+Once I had a good measurement of the line positions in warped space, it was time to project the measurement back down onto the road. Using the arrays called ploty, left_fitx and right_fitx obtained after fitting the lines with a polynomial of the binary image, I projected those lines onto the undistorted image.
 
 ![alt text][image7]
 

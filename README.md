@@ -59,7 +59,7 @@ Using the the values obtained by camera calibration function defined in the prev
 
 ### 3 - Use color transforms, gradients, etc., to create a thresholded binary image
 
-I used a combination of color and gradient thresholds to generate a binary image (thresholding steps at lines # through # in `another_file.py`).  Here's an example of my output for this step.  (note: this is not actually from one of the test images)
+I used a combination of color and gradient thresholds to generate a binary image (thresholding steps at lines # through # in `another_file.py`).  Here's an example of my output for this step.
 
 ![alt text][image3]
 
@@ -95,7 +95,7 @@ I verified that my perspective transform was working as expected by drawing the 
 
 ### 5 - Detect lane pixels and fit to find the lane boundary
 
-Then I did some other stuff and fit my lane lines with a 2nd order polynomial kinda like this:
+Then I did some other stuff and fit my lane lines with a 2nd order polynomial and it looks like this:
 
 ![alt text][image5]
 
@@ -113,11 +113,15 @@ I implemented this step in lines # through # in my code in `yet_another_file.py`
 
 ### 8 - Output visual display of the lane boundaries and numerical estimation of lane curvature and vehicle position
 
+For this I used text(), from the matplotlib librery, to write the lane boundaries and numerical estimation of lane curvature and vehicle position on top of the image.
+
 ![alt text][image8]
 
 ---
 
 ### Pipeline (video)
+
+The only difference for the final pipeline and the video was that I used cv2.putText() to write on top of the image instead of text(), from the matplotlib librery, used on the previous example.
 
 Here's a [link to my video result](./project_video_result.mp4) to the final video output.
 

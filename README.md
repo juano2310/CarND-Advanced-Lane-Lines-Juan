@@ -103,13 +103,17 @@ Then I did some other stuff and fit my lane lines with a 2nd order polynomial ki
 
 I did this in lines # through # in my code in `my_other_file.py`
 
+![alt text][image6]
+
 ### 7 - Warp the detected lane boundaries back onto the original image
 
 I implemented this step in lines # through # in my code in `yet_another_file.py` in the function `map_lane()`.  Here is an example of my result on a test image:
 
-![alt text][image6]
+![alt text][image7]
 
 ### 8 - Output visual display of the lane boundaries and numerical estimation of lane curvature and vehicle position
+
+![alt text][image8]
 
 ---
 

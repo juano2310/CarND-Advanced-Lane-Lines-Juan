@@ -21,10 +21,12 @@ The goals / steps of this project are the following:
 
 [image1]: ./examples/gopro.png "Undistorted"
 [image2]: ./examples/undistorted.png "Example image undistorted"
-[image3]: ./examples/binary_combo_example.jpg "Binary Example"
-[image4]: ./examples/warped_straight_lines.jpg "Warp Example"
-[image5]: ./examples/color_fit_lines.jpg "Fit Visual"
-[image6]: ./examples/example_output.jpg "Output"
+[image3]: ./examples/binary.png "Binary Example"
+[image4]: ./examples/top_down.png "Warp Example"
+[image5]: ./examples/fitted.png "Fit Visual"
+[image6]: ./examples/curvature.png "Curvature"
+[image7]: ./examples/warp_back.png "Warp the detected lane boundaries back"
+[image8]: ./examples/output_curvature.png "Output curvature"
 [video1]: ./project_video_result.mp4 "Video"
 
 ## Implementation
@@ -57,13 +59,11 @@ Using the the values obtained by camera calibration function defined in the prev
 
 ### 3 - Use color transforms, gradients, etc., to create a thresholded binary image
 
-#### 2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.
-
 I used a combination of color and gradient thresholds to generate a binary image (thresholding steps at lines # through # in `another_file.py`).  Here's an example of my output for this step.  (note: this is not actually from one of the test images)
 
 ![alt text][image3]
 
-#### 3. Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.
+### 4 - Apply a perspective transform to rectify binary image ("birds-eye view")
 
 The code for my perspective transform includes a function called `warper()`, which appears in lines 1 through 8 in the file `example.py` (output_images/examples/example.py) (or, for example, in the 3rd code cell of the IPython notebook).  The `warper()` function takes as inputs an image (`img`), as well as source (`src`) and destination (`dst`) points.  I chose the hardcode the source and destination points in the following manner:
 
@@ -93,21 +93,23 @@ I verified that my perspective transform was working as expected by drawing the 
 
 ![alt text][image4]
 
-#### 4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
+### 5 - Detect lane pixels and fit to find the lane boundary
 
 Then I did some other stuff and fit my lane lines with a 2nd order polynomial kinda like this:
 
 ![alt text][image5]
 
-#### 5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
+### 6 - Determine the curvature of the lane and vehicle position with respect to center
 
 I did this in lines # through # in my code in `my_other_file.py`
 
-#### 6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
+### 7 - Warp the detected lane boundaries back onto the original image
 
 I implemented this step in lines # through # in my code in `yet_another_file.py` in the function `map_lane()`.  Here is an example of my result on a test image:
 
 ![alt text][image6]
+
+### 8 - Output visual display of the lane boundaries and numerical estimation of lane curvature and vehicle position
 
 ---
 
@@ -122,6 +124,6 @@ Here's a [link to my video result](./project_video_result.mp4) to the final vide
 For this project, I used a step by step approach which helped me understand each part of the pipeline. This was very helpful when things didn't go exactly as expected. Debugging was a lot easier and concepts became clearer. At the end I put together a pipeline by simply calling the functions I implemented along the way.
 
 Ideas to improve this project:
-*1 - Average the lines to reduce sudden changes.
-*2 - Add birds-eye perspective to the final video.
-*3 - Test with more videos and images to find corner cases and improve the pipeline.
+* 1 - Average the lines to reduce sudden changes.
+* 2 - Add birds-eye perspective to the final video.
+* 3 - Test with more videos and images to find corner cases and improve the pipeline.

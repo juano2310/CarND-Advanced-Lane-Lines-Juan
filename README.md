@@ -60,7 +60,7 @@ Using the the values obtained by camera calibration function defined in the prev
 
 ### 3 - Use color transforms, gradients, etc., to create a thresholded binary image
 
-On the function `toBinary()` I used a combination of color and gradient thresholds to generate a binary image. The output is shown below. The final image is a combination of binary thresholding the S channel (HLS) and binary thresholding the result of applying the Sobel operator in the x direction on the undistorted image.
+On the function `toBinary()` I used a combination of color and gradient thresholds to generate a binary image. The output is shown below. The final image is a combination of binary thresholding the R channel (RGB) and binary thresholding the result of applying the Sobel operator in the x direction on the undistorted image.
 
 ![alt text][image3]
 
@@ -73,10 +73,10 @@ The code for my perspective transform includes a function called `warper()` whic
 offset = 100 # offset for dst points
 
 # Source points
-src = np.float32([[[ 590,  450]],
-		[[ 710,  450]],
-		[[ img_size[0]-140,  660]],
-		[[ 250,  660]]])
+src = np.float32([[[ 610,  450]],
+		[[ 680,  450]],
+		[[ img_size[0]-300,  680]],
+		[[ 380,  680]]])
 
 # Result points        
 dst = np.float32([[offset, 0],
@@ -89,10 +89,10 @@ This resulted in the following source and destination points:
 
 | Source        | Destination   |
 |:-------------:|:-------------:|
-| 590, 450      | 100, 0        |
-| 710, 450      | 1180, 0       |
-| 1140, 660     | 1180, 720     |
-| 250, 660      | 100, 720      |
+| 610, 450      | 100, 0        |
+| 680, 450      | 1180, 0       |
+| 980, 680      | 1180, 720     |
+| 380, 680      | 100, 720      |
 
 I verified that my perspective transform was working as expected by drawing the `src` and `dst` points onto a test image and its warped counterpart to verify that the lines appear parallel in the warped image.
 

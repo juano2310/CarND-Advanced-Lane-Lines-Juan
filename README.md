@@ -137,7 +137,11 @@ For this I used text(), from the matplotlib librery, to write the numerical esti
 
 ### Pipeline (video)
 
-The only difference for the final pipeline and the video was that I used cv2.putText() to write on top of the image instead of text(), from the matplotlib librery, used on the previous example.
+The pipeline basically calls all the previously defined functions and a quick sanity check.
+
+In addition I make sure that the lanes have a valid separation. If this fails I draw the previous estimation.
+
+Also, for the video, I used cv2.putText() to write on top of the image instead of text(), from the matplotlib librery, used on the plotted example.
 
 Here's a [link to my video result](./project_video_result.mp4) to the final video output.
 

@@ -34,7 +34,7 @@ The goals / steps of this project are the following:
 
 On this writeup I will describe step by step all the pipeline used on the main IPython notebook located in `./Advanced Lane Finding Project.ipynb`.
 
-### 1- Camera Calibration
+### 1 - Camera Calibration
 
 The code for this step is contained in the first code cell of the IPython notebook located in `./Undistor Images.ipynb` and also as part of the main IPython notebook located in `./Advanced Lane Finding Project.ipynb`.  
 
